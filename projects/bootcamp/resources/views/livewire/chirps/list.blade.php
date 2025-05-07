@@ -3,7 +3,11 @@
 use function Livewire\Volt\{on, state};
 use App\Models\Chirp;
 
-$getChirps = fn () => Chirp::with('user')->latest()->get();
+$getChirps = function () {
+    $values = Chirp::with('user')->latest()->get();
+    $this->chirps = $values;
+    return $values;
+};
 
 $edit = function (Chirp $chirp) {
     $this->editing = $chirp;
@@ -68,7 +72,7 @@ on([
                                 </x-dropdown-link>
                                 <x-dropdown-link wire:click="delete({{ $chirp->id }})" wire:confirm="Are you sure to delete this chirp?">
                                     {{ __('Delete') }}
-                                </x-dropdown-link> 
+                                </x-dropdown-link>
                             </x-slot>
                         </x-dropdown>
                     @endif
