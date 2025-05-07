@@ -61,6 +61,26 @@ services:
             max-size: "50m"
             max-file: "2"
 
+  php-queque:
+    restart: unless-stopped
+    build:
+      context: ../
+      dockerfile: setup/Dockerfile
+    command: queue:work --sleep=3 --tries=3 --daemon
+    entrypoint: ["php", "/var/www/html/artisan"]
+    container_name: sensoria_city_bootcamp_php_queque
+    env_file:
+      - ../.env
+    volumes:
+      - ../:/var/www/html
+    networks:
+      - sensoria_city_bootcamp
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"
+
   phpmyadmin:
     restart: unless-stopped
     image: phpmyadmin/phpmyadmin:5.2.2
