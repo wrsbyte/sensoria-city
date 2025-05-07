@@ -20,3 +20,6 @@ prod-bootcamp-composer-shell:
 
 prod-bootcamp-node-install:
 	docker compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml run --rm node sh -c "npm install && npm run build"
+
+prod-bootcamp-logs:
+	docker compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml logs -f --tail=100
