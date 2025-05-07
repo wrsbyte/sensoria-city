@@ -9,7 +9,7 @@ dev-bootcamp-node-install:
 	docker-compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml run --rm node sh -c "npm install && npm run build"
 
 dev-bootcamp-node-dev:
-	docker-compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml run --rm node sh -c "npm install && npm run dev"
+	docker-compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml run --rm -P node sh -c "npm install && npm run dev"
 
 prod-bootcamp:
 	docker compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml down --remove-orphans
