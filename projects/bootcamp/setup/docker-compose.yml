@@ -99,10 +99,29 @@ services:
             max-size: "50m"
             max-file: "2"
 
-  # Use to install dependencies in the container e.g docker-compose run --rm composer install
+  # Use to install dependencies in the container e.g docker-compose run --rm composer sh
   composer:
     image: composer:2.8.8
     container_name: sensoria_city_bootcamp_composer
+    volumes:
+      - ../:/var/www/html
+    working_dir: /var/www/html
+    environment:
+      TZ: America/Bogota
+    depends_on:
+      - php
+    networks:
+      - sensoria_city_bootcamp
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"
+
+  # Use to install dependencies in the container e.g docker-compose run --rm node sh
+  node:
+    image: node:22.15.0-alpine
+    container_name: sensoria_city_bootcamp_node
     volumes:
       - ../:/var/www/html
     working_dir: /var/www/html
