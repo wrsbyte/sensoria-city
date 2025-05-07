@@ -40,7 +40,7 @@ on([
 ]);
 
 ?>
-<div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+<div class="mt-6 bg-white border border-gray-200 divide-y">
     @foreach ($chirps as $chirp)
         <div class="p-6 flex space-x-2" wire:key="{{ $chirp->id }}">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600 -scale-x-100" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
@@ -79,7 +79,7 @@ on([
                 </div>
 
                 @if ($chirp->is($editing))
-                    <livewire:chirps.edit :chirp="$chirp" :key="$chirp->id" />
+                    <livewire:components.chirps.edit :chirp="$chirp" :key="$chirp->id" />
                 @else
                     <p class="mt-4 text-lg text-gray-900">{{ $chirp->message }}</p>
                 @endif
