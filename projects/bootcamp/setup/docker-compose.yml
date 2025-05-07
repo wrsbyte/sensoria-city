@@ -63,6 +63,8 @@ services:
       - ../:/var/www/html
     networks:
       - sensoria_city_bootcamp
+    depends_on:
+      - mysql
     logging:
         driver: "json-file"
         options:
@@ -83,6 +85,9 @@ services:
       - ../:/var/www/html
     networks:
       - sensoria_city_bootcamp
+    depends_on:
+      - php
+      - mysql
     logging:
         driver: "json-file"
         options:
