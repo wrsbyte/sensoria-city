@@ -18,13 +18,6 @@ jobs:
     name: 🚀 Build and Test ${{ matrix.app }}
     runs-on: ubuntu-latest
 
-    # if: |
-    #   contains(
-    #     join(github.event.commits.*.modified, ','), matrix.app
-    #   ) || contains(
-    #     join(github.event.commits.*.added, ','), matrix.app
-    #   )
-
     steps:
       - uses: actions/checkout@v4
         with:
