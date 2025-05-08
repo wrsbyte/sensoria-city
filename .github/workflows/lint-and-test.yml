@@ -20,11 +20,6 @@ jobs:
     name: 🚀 Build and Test ${{ matrix.app }}
     runs-on: ubuntu-latest
 
-    defaults:
-      run:
-        shell: bash
-        working-directory: ${{ matrix.app }}
-
     steps:
       - uses: actions/checkout@v4
         with:
