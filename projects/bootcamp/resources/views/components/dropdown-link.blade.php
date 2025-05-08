@@ -7,7 +7,7 @@
     <a {{ $attributes->merge(['class' => $class]) }}>
         <span class="relative my-auto">
             <span
-                class="absolute z-[0] origin-right scale-x-[0] bg-purple-200 transition-transform ease-global motion-safe:duration-300 motion-reduce:duration-0 dark:bg-purple-600 lg:group-hover:origin-left lg:group-focus-visible:origin-left -left-[7px] -top-[7px] h-[calc(100%+14px)] w-[calc(100%+14px)] lg:group-hover:scale-x-[1] lg:group-focus-visible:scale-x-[1]">
+                class="absolute z-[0] origin-right scale-x-[0] bg-purple-200 transition-transform ease-global motion-safe:duration-300 motion-reduce:duration-0 dark:bg-purple-600 md:group-hover:origin-left md:group-focus-visible:origin-left -left-[7px] -top-[7px] h-[calc(100%+14px)] w-[calc(100%+14px)] md:group-hover:scale-x-[1] md:group-focus-visible:scale-x-[1]">
             </span>
             <span class="relative h-full z-[1] px-[2px]">
                 {{ $slot }}
