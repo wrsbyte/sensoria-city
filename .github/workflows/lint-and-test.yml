@@ -20,6 +20,10 @@ jobs:
     name: 🚀 Build and Test ${{ matrix.app }}
     runs-on: ubuntu-latest
 
+    defaults:
+      run:
+        working-directory: ${{ matrix.app }}
+
     steps:
       - uses: actions/checkout@v4
         with:
@@ -33,7 +37,6 @@ jobs:
       
       - name: 🍀 Set up Node
         uses: actions/setup-node@v4
-        working-directory: ${{ matrix.app }}
         with:
           node-version: '22'
           cache: 'npm'
