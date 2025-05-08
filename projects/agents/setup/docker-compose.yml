@@ -12,7 +12,7 @@ services:
   nginx:
     image: nginx:stable-alpine
     ports:
-      - 9031:80
+      - 9033:80
     restart: unless-stopped
     container_name: sensoria_city_agents_nginx
     volumes:
@@ -99,7 +99,7 @@ services:
     image: phpmyadmin/phpmyadmin:5.2.2
     container_name: sensoria_city_agents_phpmyadmin
     ports:
-      - 9032:80
+      - 9034:80
     env_file:
       - ../.env
     depends_on:
@@ -148,8 +148,6 @@ services:
       TZ: America/Bogota
     ports:
       - 5173:5173
-    depends_on:
-      - php
     networks:
       - sensoria_city_agents
     logging:
