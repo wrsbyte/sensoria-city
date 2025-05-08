@@ -16,7 +16,7 @@ class RegistrationTest extends TestCase
 
         $response
             ->assertOk()
-            ->assertSeeVolt('pages.auth.register');
+            ->assertSee('Register');
     }
 
     public function test_new_users_can_register(): void

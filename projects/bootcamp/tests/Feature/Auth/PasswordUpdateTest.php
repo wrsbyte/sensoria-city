@@ -18,7 +18,7 @@ class PasswordUpdateTest extends TestCase
 
         $this->actingAs($user);
 
-        $component = Volt::test('profile.update-password-form')
+        $component = Volt::test('components.profile.update-password-form')
             ->set('current_password', 'password')
             ->set('password', 'new-password')
             ->set('password_confirmation', 'new-password')
@@ -37,7 +37,7 @@ class PasswordUpdateTest extends TestCase
 
         $this->actingAs($user);
 
-        $component = Volt::test('profile.update-password-form')
+        $component = Volt::test('components.profile.update-password-form')
             ->set('current_password', 'wrong-password')
             ->set('password', 'new-password')
             ->set('password_confirmation', 'new-password')
