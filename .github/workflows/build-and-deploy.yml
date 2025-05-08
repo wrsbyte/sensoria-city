@@ -32,8 +32,7 @@ jobs:
           port: ${{ secrets.SSH_PORT }}
           script: |
             cd /var/docker-apps/sensoria-city
-            sudo su
-            eval $(ssh-agent -s)
-            ssh-add /root/.ssh/id_ed25519
-            git pull
-            make ${{ matrix.command }}
+            sudo eval $(ssh-agent -s)
+            sudo ssh-add /root/.ssh/id_ed25519
+            sudo git pull
+            sudo make ${{ matrix.command }}
