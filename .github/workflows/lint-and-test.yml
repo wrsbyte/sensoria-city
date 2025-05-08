@@ -30,11 +30,23 @@ jobs:
         with:
           php-version: '8.3'
           extensions: mbstring, pdo_mysql, xml
+      
+      - name: 🍀 Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
 
       - name: 🔧 Install dependencies
         run: |
           cd ${{ matrix.app }}
           composer install --no-progress --prefer-dist
+
+      - name: 📦 Install node dependencies
+        run: |
+          cd ${{ matrix.app }}
+          npm install
+          npm run build
 
       - name: ⚙️ Prepare environment
         run: |
