@@ -1,0 +1,37 @@
+name: 🚀 Build and deploy
+
+on:
+  workflow_run:
+    workflows:
+      - '💅 Lint & Test'
+    types:
+      - completed
+
+jobs:
+  deploy:
+    strategy:
+      matrix:
+        command:
+          - 'prod-bootcamp'
+
+    name: 🚀 Build and deploy ${{ matrix.command }}
+    runs-on: ubuntu-latest
+
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+
+    steps:
+      - name: ✨ Checkout
+        uses: actions/checkout@v4
+
+      - name: 🚀 Execute deploy
+        uses: appleboy/ssh-action@v1
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SSH_PORT }}
+          script: |
+            cd /var/docker-apps/sensoria-city
+            sudo su
+            git pull
+            make ${{ matrix.command }}
