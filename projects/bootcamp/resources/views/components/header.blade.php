@@ -1,15 +1,3 @@
-<?php
-
-use App\Livewire\Actions\Logout;
-
-$logout = function (Logout $logout) {
-    $logout();
-
-    $this->redirect('/', navigate: true);
-};
-
-?>
-
 <header class="bg-white border-b border-gray-200 sticky top-0 z-10">
     <nav x-data="{ open: false }">
         <!-- Primary Navigation Menu -->
@@ -72,12 +60,7 @@ $logout = function (Logout $logout) {
                                     {{ __('Profile') }}
                                 </x-dropdown-link>
 
-                                <!-- Authentication -->
-                                <button wire:click="logout" class="w-full text-start">
-                                    <x-dropdown-link>
-                                        {{ __('Log Out') }}
-                                    </x-dropdown-link>
-                                </button>
+                                <livewire:components.profile.logout />
                             </x-slot>
                         </x-dropdown>
                     @endif
@@ -140,18 +123,12 @@ $logout = function (Logout $logout) {
                         <div class="font-medium text-sm text-gray-500">{{ auth()->user()->email }}</div>
                     </div>
 
-
                     <div class="mt-3 space-y-1">
                         <x-responsive-nav-link :href="route('profile')" wire:navigate>
                             {{ __('Profile') }}
                         </x-responsive-nav-link>
 
-                        <!-- Authentication -->
-                        <button wire:click="logout" class="w-full text-start">
-                            <x-responsive-nav-link>
-                                {{ __('Log Out') }}
-                            </x-responsive-nav-link>
-                        </button>
+                        <livewire:components.profile.responsive-logout />
                     </div>
                 @endif
 
