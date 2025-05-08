@@ -18,12 +18,12 @@ jobs:
     name: 🚀 Build and Test ${{ matrix.app }}
     runs-on: ubuntu-latest
 
-    if: |
-      contains(
-        join(github.event.commits.*.modified, ','), matrix.app
-      ) || contains(
-        join(github.event.commits.*.added, ','), matrix.app
-      )
+    # if: |
+    #   contains(
+    #     join(github.event.commits.*.modified, ','), matrix.app
+    #   ) || contains(
+    #     join(github.event.commits.*.added, ','), matrix.app
+    #   )
 
     steps:
       - uses: actions/checkout@v4
@@ -45,3 +45,7 @@ jobs:
         run: |
           cd ${{ matrix.app }}
           php artisan test
+        env:
+          DB_CONNECTION: sqlite
+          DB_DATABASE: ":memory:"
+          APP_ENV: testing
