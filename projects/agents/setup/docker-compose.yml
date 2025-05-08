@@ -1,0 +1,159 @@
+version: "3"
+
+networks:
+  sensoria_city_agents:
+  web:
+    external: true
+
+volumes:
+  sensoria_city_agents_db:
+
+services:
+  nginx:
+    image: nginx:stable-alpine
+    ports:
+      - 9031:80
+    restart: unless-stopped
+    container_name: sensoria_city_agents_nginx
+    volumes:
+      - ../:/var/www/html
+      - ./config/nginx.default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - sensoria_city_agents
+      - web
+    environment:
+      VIRTUAL_HOST: agents.sc.wrsbyte.com
+      VIRTUAL_PORT: 80
+      LETSENCRYPT_HOST: agents.sc.wrsbyte.com
+      LETSENCRYPT_EMAIL: me@wrsbyte.com
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"
+
+  mysql:
+    image: mysql:9.3.0
+    restart: unless-stopped
+    container_name: sensoria_city_agents_mysql
+    volumes:
+      - ./database_volume/sensoria_city_agents_db:/var/lib/mysql
+    env_file:
+      - ../.env
+    networks:
+      - sensoria_city_agents
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"
+
+  php:
+    restart: unless-stopped
+    build:
+      context: ../
+      dockerfile: setup/Dockerfile
+    container_name: sensoria_city_agents_php
+    env_file:
+      - ../.env
+    volumes:
+      - ../:/var/www/html
+    networks:
+      - sensoria_city_agents
+    depends_on:
+      - mysql
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"
+
+  php-queque:
+    restart: unless-stopped
+    build:
+      context: ../
+      dockerfile: setup/Dockerfile
+    command: queue:work --sleep=3 --tries=3 --daemon
+    entrypoint: ["php", "/var/www/html/artisan"]
+    container_name: sensoria_city_agents_php_queque
+    env_file:
+      - ../.env
+    volumes:
+      - ../:/var/www/html
+    networks:
+      - sensoria_city_agents
+    depends_on:
+      - php
+      - mysql
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"
+
+  phpmyadmin:
+    restart: unless-stopped
+    image: phpmyadmin/phpmyadmin:5.2.2
+    container_name: sensoria_city_agents_phpmyadmin
+    ports:
+      - 9032:80
+    env_file:
+      - ../.env
+    depends_on:
+      - mysql
+    networks:
+      - sensoria_city_agents
+      - web
+    environment:
+      VIRTUAL_HOST: pma.agents.sc.wrsbyte.com
+      VIRTUAL_PORT: 80
+      LETSENCRYPT_HOST: pma.agents.sc.wrsbyte.com
+      LETSENCRYPT_EMAIL: me@wrsbyte.com
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"
+
+  # Use to install dependencies in the container e.g docker-compose run --rm composer sh
+  composer:
+    image: composer:2.8.8
+    container_name: sensoria_city_agents_composer
+    volumes:
+      - ../:/var/www/html
+    working_dir: /var/www/html
+    environment:
+      TZ: America/Bogota
+    depends_on:
+      - php
+    networks:
+      - sensoria_city_agents
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"
+
+  # Use to install dependencies in the container e.g docker-compose run --rm node sh
+  node:
+    image: node:22.15.0-alpine
+    container_name: sensoria_city_agents_node
+    volumes:
+      - ../:/var/www/html
+    working_dir: /var/www/html
+    environment:
+      TZ: America/Bogota
+    ports:
+      - 5173:5173
+    depends_on:
+      - php
+    networks:
+      - sensoria_city_agents
+    logging:
+        driver: "json-file"
+        options:
+            max-size: "50m"
+            max-file: "2"

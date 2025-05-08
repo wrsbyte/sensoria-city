@@ -28,3 +28,16 @@ prod-bootcamp-node-install:
 
 prod-bootcamp-logs:
 	docker compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml logs -f --tail=100
+
+dev-agents:
+	docker-compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml down --remove-orphans
+	docker-compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml up --build
+
+dev-agents-composer-shell:
+	docker-compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml run --rm composer sh
+
+dev-agents-node-install:
+	docker-compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml run --rm node sh -c "npm install && npm run build"
+
+dev-agents-node-dev:
+	docker-compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml run --rm -P node sh -c "npm install && npm run dev"
