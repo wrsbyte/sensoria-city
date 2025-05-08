@@ -33,5 +33,7 @@ jobs:
           script: |
             cd /var/docker-apps/sensoria-city
             sudo su
+            eval $(ssh-agent -s)
+            ssh-add ~/.ssh/id_ed25519
             git pull
             make ${{ matrix.command }}

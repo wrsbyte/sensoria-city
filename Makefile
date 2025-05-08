@@ -15,7 +15,7 @@ _prod-bootcamp:
 	docker compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml down --remove-orphans
 	docker compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml up -d --build
 
-prod-bootcamp: _prod-bootcamp dev-bootcamp-node-dev
+prod-bootcamp: _prod-bootcamp prod-bootcamp-node-install
 
 prod-bootcamp-php-shell:
 	docker compose -p sensoria-city-bootcamp -f projects/bootcamp/setup/docker-compose.yml run --rm php sh
