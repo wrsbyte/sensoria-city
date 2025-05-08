@@ -33,6 +33,7 @@ jobs:
       
       - name: 🍀 Set up Node
         uses: actions/setup-node@v4
+        working-directory: ${{ matrix.app }}
         with:
           node-version: '22'
           cache: 'npm'
