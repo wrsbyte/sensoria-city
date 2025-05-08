@@ -1,0 +1,47 @@
+name: 💅 Lint & Test
+
+on:
+  push:
+    paths:
+      - 'projects/bootcamp/**'
+  pull_request:
+    paths:
+      - 'projects/bootcamp/**'
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        app:
+          - 'projects/bootcamp'
+
+    name: 🚀 Build and Test ${{ matrix.app }}
+    runs-on: ubuntu-latest
+
+    if: |
+      contains(
+        join(github.event.commits.*.modified, ','), matrix.app
+      ) || contains(
+        join(github.event.commits.*.added, ','), matrix.app
+      )
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 🚀 Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: mbstring, pdo_mysql, xml
+
+      - name: 🔧 Install dependencies
+        run: |
+          cd ${{ matrix.app }}
+          composer install --no-progress --prefer-dist
+
+      - name: 📨 Run tests
+        run: |
+          cd ${{ matrix.app }}
+          php artisan test
