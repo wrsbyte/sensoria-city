@@ -4,10 +4,12 @@ on:
   push:
     paths:
       - 'projects/bootcamp/**'
+      - 'projects/agents/**'
       - '.github/**'
   pull_request:
     paths:
       - 'projects/bootcamp/**'
+      - 'projects/agents/**'
       - '.github/**'
 
 jobs:
@@ -16,6 +18,7 @@ jobs:
       matrix:
         app:
           - 'projects/bootcamp'
+          - 'projects/agents'
 
     name: 🚀 Build and Test ${{ matrix.app }}
     runs-on: ubuntu-latest

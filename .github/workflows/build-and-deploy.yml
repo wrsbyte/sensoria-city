@@ -13,6 +13,7 @@ jobs:
       matrix:
         command:
           - 'prod-bootcamp'
+          - 'prod-agents'
 
     name: 🚀 Build and deploy ${{ matrix.command }}
     runs-on: ubuntu-latest
