@@ -55,7 +55,7 @@
 
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
-                <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
+                <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-xl rounded-br-xl lg:rounded-tl-xl lg:rounded-br-none">
                     <h1 class="font-medium text-4xl mb-4">
                         Sensoria City Agents
                     </h1>
@@ -135,9 +135,9 @@
                     </ul>
                 </div>
 
-                <div class="bg-[#0d9488] dark:bg-[#1D0002] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/335] lg:aspect-auto w-full h-full lg:w-[438px] shrink-0 overflow-hidden">
+                <div class="bg-[#0d9488] dark:bg-[#1D0002] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-xl lg:rounded-t-none lg:rounded-r-xl aspect-[335/335] lg:aspect-auto w-full h-full lg:w-[438px] shrink-0 overflow-hidden">
                     <img class="object-fit scale-105 w-full" src="/images/home.webp" alt="Home Image">
-                    <div class="absolute inset-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"></div>
+                    <div class="absolute inset-0 rounded-t-xl lg:rounded-t-none lg:rounded-r-xl shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d]"></div>
                 </div>
             </main>
         </div>
