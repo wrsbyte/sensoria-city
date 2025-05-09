@@ -48,7 +48,7 @@ _prod-agents:
 	docker compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml down --remove-orphans
 	docker compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml up -d --build
 
-prod-agents: _prod-agents prod-agents-node-install
+prod-agents: _prod-agents prod-agents-node-install prod-agents-php-optimize
 
 prod-agents-php-shell:
 	docker compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml run --rm php sh
