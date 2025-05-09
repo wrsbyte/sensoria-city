@@ -122,7 +122,7 @@ Todo all tasks.'
     public static function getRelations(): array
     {
         return [
-            //
+            AgentResource\RelationManagers\AgentToolUsesRelationManager::class,
         ];
     }
 

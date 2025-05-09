@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Agent extends Model
 {
@@ -29,5 +30,10 @@ class Agent extends Model
         return $this->belongsToMany(AgentTool::class, 'agent_tool_uses')
             ->withPivot('stop_at_tool')
             ->withTimestamps();
+    }
+
+    public function agentToolUses(): HasMany
+    {
+        return $this->hasMany(AgentToolUse::class);
     }
 }
