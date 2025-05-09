@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class LLMModel extends Model
 {
+    protected $table = 'llm_models';
+
     protected $fillable = [
         'name',
         'provider',
