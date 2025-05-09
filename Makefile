@@ -53,6 +53,9 @@ prod-agents: _prod-agents prod-agents-node-install
 prod-agents-php-shell:
 	docker compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml run --rm php sh
 
+prod-agents-php-optimize:
+	docker compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml run --rm php sh -c "php artisan filament:optimize && php artisan optimize"
+
 prod-agents-composer-shell:
 	docker compose -p sensoria-city-agents -f projects/agents/setup/docker-compose.yml run --rm composer sh
 
