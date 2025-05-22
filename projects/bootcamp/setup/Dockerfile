@@ -14,3 +14,4 @@ COPY setup/config/php-file-size-post.ini /usr/local/etc/php/conf.d
 
 RUN chown -R www-data:www-data /var/www
 RUN chmod -R 755 /var/www
+
